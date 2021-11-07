@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import InputText from "../input/InputText";
-import useGetSubmission from "./custom-hooks/getReview";
-import useReviewFunc from "./custom-hooks/reviewFunc";
+import useGetSubmission from "./custom-hooks/useGetSubmission";
+import useReviewFunc from "./custom-hooks/useReviewFunc";
 
 function ReviewSub() {
   const [grade, setGrade] = useState("");

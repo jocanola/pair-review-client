@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import InputText from "../input/InputText";
 import Grade from "../Grade/Grade";
-import useSubmitExam from "./custom-hooks/subFunc";
+import useSubmitExam from "./custom-hooks/useSubmitExam";
 // import Button from "../Botton/Button";
 function Submission() {
   const [email, setEmail] = useState("");

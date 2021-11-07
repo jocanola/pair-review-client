@@ -17,7 +17,7 @@ function useSubmitExam() {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        setLoading(false);
         setResponse(JSON.stringify(response.data));
         localStorage.setItem("response", JSON.stringify(response.data));
       });
