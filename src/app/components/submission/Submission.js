@@ -6,7 +6,7 @@ import useSubmitExam from "./custom-hooks/subFunc";
 function Submission() {
   const [email, setEmail] = useState("");
   const [topic, setTopic] = useState("");
-  const [response, onSubmitExam] = useSubmitExam(null);
+  const [response, loading, onSubmitExam] = useSubmitExam(null);
   const [sessionLink, setSessionLink] = useState("");
   const [responseData, setResponse] = useState(null);
 
@@ -19,7 +19,7 @@ function Submission() {
   return (
     <div className="submission">
       <h1 style={{ textAlign: "center" }}>
-        Exam Session {response ? "Submitted" : null}
+        Exam Session {!response ? "Submitted" : null}
       </h1>
       {!responseData ? (
         <>
@@ -40,12 +40,13 @@ function Submission() {
           />
           <InputText
             type="submit"
-            value="Submit"
+            value={!loading ? "Submit" : "Loading..."}
             id="submit-button"
             placeholder="Session Link"
+            disabled={loading}
             onClick={() => {
               onSubmitExam(data);
-              window.location.reload();
+              // window.location.reload();
             }}
           />
         </>

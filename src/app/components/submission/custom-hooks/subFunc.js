@@ -2,9 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 function useSubmitExam() {
   const [response, setResponse] = useState();
+  const [loading, setLoading] = useState(false);
   // console.log();
 
   async function onSubmitExam(data) {
+    setLoading(true);
+    console.log(data);
     await axios
       .post(
         "https://schoolhouse-th.herokuapp.com/api/v1",
@@ -14,13 +17,13 @@ function useSubmitExam() {
         }
       )
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
         setResponse(JSON.stringify(response.data));
         localStorage.setItem("response", JSON.stringify(response.data));
       });
   }
 
-  return [response, onSubmitExam];
+  return [response, loading, onSubmitExam];
 }
 
 export default useSubmitExam;
