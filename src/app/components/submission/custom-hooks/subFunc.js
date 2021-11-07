@@ -6,9 +6,13 @@ function useSubmitExam() {
 
   async function onSubmitExam(data) {
     await axios
-      .post("http://localhost:5000/api/v1", JSON.stringify(data), {
-        headers: { "Content-Type": "application/json; charset=UTF-8" },
-      })
+      .post(
+        "https://schoolhouse-th.herokuapp.com/api/v1",
+        JSON.stringify(data),
+        {
+          headers: { "Content-Type": "application/json; charset=UTF-8" },
+        }
+      )
       .then((response) => {
         // console.log(response.data);
         setResponse(JSON.stringify(response.data));

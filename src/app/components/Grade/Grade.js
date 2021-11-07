@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import InputText from "../input/InputText";
-function Grade({ email, topic, sessionLink, grade, reviewed }) {
+function Grade() {
   const [response, setResponse] = useState(null);
 
   useEffect(() => {

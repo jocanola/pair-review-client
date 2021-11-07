@@ -7,12 +7,12 @@ function useGetSubmission() {
   async function onGetSubmission(id) {
     //   const {} = data;
     await axios
-      .get(`http://localhost:5000/api/v1/6185741bf740975211669243`, {
+      .get(`https://schoolhouse-th.herokuapp.com/api/v1/${id}`, {
         headers: { "Content-Type": "application/json; charset=UTF-8" },
       })
       .then((response) => {
-        setResponseToGrade(JSON.stringify(response.data));
-        localStorage.setItem("user", JSON.stringify(response.data.data));
+        setResponseToGrade(response.data);
+        localStorage.setItem("review", JSON.stringify(response.data.data));
       });
   }
 

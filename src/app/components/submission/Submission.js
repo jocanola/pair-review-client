@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import InputText from "../input/InputText";
-import Grade from "../Table/Grade";
+import Grade from "../Grade/Grade";
 import useSubmitExam from "./custom-hooks/subFunc";
 // import Button from "../Botton/Button";
 function Submission() {
@@ -43,7 +43,10 @@ function Submission() {
             value="Submit"
             id="submit-button"
             placeholder="Session Link"
-            onClick={() => onSubmitExam(data)}
+            onClick={() => {
+              onSubmitExam(data);
+              window.location.reload();
+            }}
           />
         </>
       ) : (
