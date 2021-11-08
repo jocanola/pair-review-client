@@ -19,7 +19,17 @@ function ReviewSub() {
 
   // const { email, topic, sessionLink, ...others } = responseToGrade?.data;
   const id = responseToGrade?.data?._id;
-
+  console.log(responseToGrade);
+  if (responseToGrade === undefined) {
+    return (
+      <div className="container">
+        <h1 style={{ padding: 23, textAlign: "center" }}>
+          {" "}
+          No Submission is ready to be graded check back{" "}
+        </h1>
+      </div>
+    );
+  }
   return (
     <div className="container">
       <h1 style={{ textAlign: "center" }}>Grade Peer</h1>
@@ -44,6 +54,7 @@ function ReviewSub() {
             placeholder="Grade (100%)"
             type="text"
             onInputChange={(event) => setGrade(event.target.value)}
+            grade
           />
 
           <InputText

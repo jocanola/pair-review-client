@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 function Grade() {
   const [response, setResponse] = useState(null);
 
@@ -7,19 +7,17 @@ function Grade() {
     const getDataFromLS = JSON.parse(localStorage.getItem("response"));
     setResponse(getDataFromLS?.data);
   }, []);
-  const navigate = useNavigate();
-  const navigateToReview = () => {
-    navigate("/review");
-  };
+
   return (
     <center>
+      <h1 style={{ textAlign: "center" }}>Exam Session Submitted</h1>
+      <h1 style={{ textAlign: "center" }}>
+        And Successfully Review Colleague Submission
+      </h1>
       <h3>
         Grade :{" "}
         {response?.grade?.length > 1 ? response?.grade : "Not Yet Available"}
       </h3>
-      <button id="submit-button" onClick={navigateToReview}>
-        Review Peer
-      </button>
     </center>
   );
 }

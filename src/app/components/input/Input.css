@@ -1,7 +1,8 @@
 input,
 button {
-  border: 0;
+  /* border: 0; */
   outline: 0;
+  border-width: 0px;
   padding: 1em;
   border-radius: 8px;
   display: block;
@@ -12,7 +13,12 @@ button {
   font-family: "Merriweather", sans-serif;
   box-shadow: 0 1px 1px rgba(black, 0.3);
   resize: none;
-  background-color: #adadad;
+  background-color: "#edecec";
+}
+
+input:focus {
+  border-width: 1px;
+  border-color: rgb(15, 190, 103);
 }
 
 #submit-button {

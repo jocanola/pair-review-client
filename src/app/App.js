@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Submission from "./components/submission/Submission";
 import ReviewSub from "./components/Review/ReviewSub";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useLocation, Routes, Route } from "react-router-dom";
+import Grade from "./components/Grade/Grade";
 export default function App() {
+  const [responseData, setResponse] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const getDataFromLS = JSON.parse(localStorage.getItem("response"));
+    setResponse(getDataFromLS?.data);
+  }, [location.pathname]);
   return (
     <div className="app">
       <div className="container">
-        <BrowserRouter>
-          <Routes>
-            <Route exact path="/" element={<Submission />} />
-            <Route exact path="/review" element={<ReviewSub />} />
-          </Routes>
-        </BrowserRouter>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={responseData ? <Grade /> : <Submission />}
+          />
+          <Route exact path="/review" element={<ReviewSub />} />
+          <Route exact path="/review" element={<ReviewSub />} />
+        </Routes>
       </div>
     </div>
   );

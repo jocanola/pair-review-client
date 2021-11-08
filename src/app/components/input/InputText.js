@@ -16,6 +16,7 @@ function InputText({
       disabled={disabled}
       id={id}
       onClick={onClick}
+      
     />
   );
 }
