@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 function Grade() {
   const [response, setResponse] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const getDataFromLS = JSON.parse(localStorage.getItem("response"));
     setResponse(getDataFromLS?.data);
@@ -18,6 +18,9 @@ function Grade() {
         Grade :{" "}
         {response?.grade?.length > 1 ? response?.grade : "Not Yet Available"}
       </h3>
+      <button id="submit-button" onClick={() => navigate("/requestSub")}>
+        Review Another Submission
+      </button>
     </center>
   );
 }

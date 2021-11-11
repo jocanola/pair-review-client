@@ -5,6 +5,7 @@ import ReviewSub from "./components/Review/ReviewSub";
 
 import { useLocation, Routes, Route } from "react-router-dom";
 import Grade from "./components/Grade/Grade";
+import RequestReview from "./components/Review/RequestReview";
 export default function App() {
   const [responseData, setResponse] = useState(null);
   const location = useLocation();
@@ -23,7 +24,7 @@ export default function App() {
             element={responseData ? <Grade /> : <Submission />}
           />
           <Route exact path="/review" element={<ReviewSub />} />
-          <Route exact path="/review" element={<ReviewSub />} />
+          <Route exact path="/requestSub" element={<RequestReview />} />
         </Routes>
       </div>
     </div>

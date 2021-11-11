@@ -22,7 +22,7 @@ function useSubmitExam() {
         setLoading(false);
         setResponse(JSON.stringify(response.data));
         localStorage.setItem("response", JSON.stringify(response.data));
-        navigate("/review");
+        navigate("/requestSub");
       });
   }
 

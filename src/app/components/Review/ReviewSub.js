@@ -1,75 +1,52 @@
 import React, { useState, useEffect } from "react";
 import InputText from "../input/InputText";
-import useGetSubmission from "./custom-hooks/useGetSubmission";
-import useReviewFunc from "./custom-hooks/useReviewFunc";
+import useSubmitGrade from "./custom-hooks/useSubmitGrade";
+import { useNavigate } from "react-router-dom";
 
 function ReviewSub() {
+  const [response, onPostGrade] = useSubmitGrade(null);
+  const [submissionData, setSubmissionData] = useState();
   const [grade, setGrade] = useState("");
-  const [responseToGrade, onGetSubmission] = useGetSubmission(null);
-  const [response, onReviewSub] = useReviewFunc(null);
-  // const [hasReview, setHasReview] = useState(false);
-
-  useEffect(() => {}, []);
-
-  const requestReview = () => {
-    const currentUserSubId = JSON.parse(localStorage.getItem("response"));
-    const subId = currentUserSubId?.data?._id;
-    onGetSubmission(subId);
-  };
+  const navigate = useNavigate();
 
   // const { email, topic, sessionLink, ...others } = responseToGrade?.data;
-  const id = responseToGrade?.data?._id;
-  console.log(responseToGrade);
-  if (responseToGrade === undefined) {
-    return (
-      <div className="container">
-        <h1 style={{ padding: 23, textAlign: "center" }}>
-          {" "}
-          No Submission is ready to be graded check back{" "}
-        </h1>
-      </div>
-    );
-  }
+  // const id = responseToGrade?.data?._id;
+
+  const id = submissionData?._id;
+  console.log(id);
+
   return (
     <div className="container">
       <h1 style={{ textAlign: "center" }}>Grade Peer</h1>
-      {responseToGrade || response ? (
-        <>
-          <InputText
-            placeholder={responseToGrade?.data?.email}
-            type="text"
-            disabled={true}
-          />
-          <InputText
-            placeholder={responseToGrade?.data?.topic}
-            type="text"
-            disabled={true}
-          />
-          <InputText
-            placeholder={responseToGrade?.data?.sessionLink}
-            type="text"
-            disabled={true}
-          />
-          <InputText
-            placeholder="Grade (100%)"
-            type="text"
-            onInputChange={(event) => setGrade(event.target.value)}
-            grade
-          />
 
-          <InputText
-            type="submit"
-            value="Submit Review"
-            id="submit-button"
-            onClick={() => onReviewSub(id, grade)}
-          />
-          <h3>{response?.message}</h3>
-        </>
-      ) : (
-        <button id="submit-button" onClick={requestReview}>
-          Request Peer Review
-        </button>
-      )}
+      <InputText
+        placeholder={submissionData?.email}
+        type="text"
+        disabled={true}
+      />
+      <InputText
+        placeholder={submissionData?.topic}
+        type="text"
+        disabled={true}
+      />
+      <InputText
+        placeholder={submissionData?.sessionLink}
+        type="text"
+        disabled={true}
+      />
+      <InputText
+        placeholder="Grade (100%)"
+        type="text"
+        onInputChange={(event) => setGrade(event.target.value)}
+        grade
+      />
+
+      <InputText
+        type="submit"
+        value="Submit Review"
+        id="submit-button"
+        onClick={() => onPostGrade(id, grade)}
+      />
     </div>
   );
 }

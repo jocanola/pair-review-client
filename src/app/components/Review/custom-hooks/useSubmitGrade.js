@@ -1,12 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-function useReviewFunc() {
+function useSubmitGrade() {
   const [response, setResponse] = useState();
   const navigate = useNavigate();
   // console.log();
 
-  async function onReviewSub(id, grade) {
+  async function onPostGrade(id, grade) {
     const data = {
       grade,
       reviewed: true,
@@ -22,15 +22,13 @@ function useReviewFunc() {
       )
       .then((response) => {
         setResponse(JSON.stringify(response.data));
-        setTimeout(function () {
-          navigate("/");
-        }, 3000);
+        navigate("/");
       });
   }
 
   console.log(response);
 
-  return [response, onReviewSub];
+  return [response, onPostGrade];
 }
 
-export default useReviewFunc;
+export default useSubmitGrade;
